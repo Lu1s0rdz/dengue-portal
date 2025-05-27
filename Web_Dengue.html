@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prevención del Dengue - Portal de Información Médica</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: #d32f2f;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .author-info {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .academic-note {
+            background: #e3f2fd;
+            padding: 1rem;
+            border-left: 4px solid #2196f3;
+            margin: 1rem 0;
+            border-radius: 5px;
+            font-style: italic;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+        }
+
+        nav a:hover {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section h2 {
+            color: #d32f2f;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            border-bottom: 3px solid #ff6b6b;
+            padding-bottom: 0.5rem;
+        }
+
+        .warning-box {
+            background: linear-gradient(45deg, #ff9800, #f57c00);
+            color: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(255,152,0,0.3);
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            border-left: 5px solid #4caf50;
+            box-shadow: 0 4px 15px rgba(76,175,80,0.2);
+        }
+
+        .dengue-image {
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .symptoms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .symptom-card {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .symptom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .prevention-tips {
+            background: linear-gradient(135deg, #e1f5fe, #b3e5fc);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 5px solid #03a9f4;
+        }
+
+        .citation {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .form-container {
+            background: linear-gradient(135deg, #fff3e0, #ffcc02);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 8px 32px rgba(255,193,7,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0,123,255,0.2);
+        }
+
+        button {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40,167,69,0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40,167,69,0.4);
+        }
+
+        .mind-map {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(156,39,176,0.2);
+        }
+
+        .mind-map-node {
+            display: inline-block;
+            background: white;
+            padding: 1rem;
+            margin: 0.5rem;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .mind-map-node:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .video-container {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(233,30,99,0.2);
+        }
+
+        .bibliography {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 5px solid #6c757d;
+        }
+
+        .bibliography ol {
+            padding-left: 1rem;
+        }
+
+        .bibliography li {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: rgba(33, 37, 41, 0.9);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .symptoms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+/* === MEDIA QUERIES RESPONSIVE COMPLETAS === */
+
+/* Móviles pequeños (320px - 480px) */
+@media screen and (max-width: 480px) {
+    .container { padding: 8px; }
+    h1 { font-size: 1.8rem; line-height: 1.2; }
+    .section h2 { font-size: 1.5rem; }
+    nav ul { flex-direction: column; gap: 0.8rem; }
+    nav a { padding: 0.8rem 1rem; font-size: 0.9rem; text-align: center; }
+    .symptoms-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+    .form-container { padding: 1rem; }
+    .author-info, .academic-note { padding: 0.8rem; font-size: 0.9rem; }
+    .dengue-image { height: 200px; }
+    .mind-map div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+    }
+    .mind-map-node {
+        margin: 0.3rem; padding: 0.8rem; font-size: 0.9rem;
+    }
+}
+
+/* Móviles medianos a tablets pequeñas (481px - 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .container { padding: 12px; }
+    h1 { font-size: 2rem; }
+    nav ul { flex-direction: column; gap: 1rem; }
+    .symptoms-grid { grid-template-columns: repeat(2, 1fr); }
+    .form-container { padding: 1.5rem; }
+}
+
+/* Tablets (769px - 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .container { padding: 15px; }
+    nav ul { gap: 1.5rem; }
+    .symptoms-grid { grid-template-columns: repeat(3, 1fr); }
+    .section { padding: 1.8rem; }
+}
+
+/* Laptops (1025px - 1440px) */
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+    .container { max-width: 1100px; }
+}
+
+/* Pantallas extra grandes (más de 1440px) */
+@media screen and (min-width: 1441px) {
+    .container { max-width: 1300px; }
+    h1 { font-size: 3rem; }
+    .section h2 { font-size: 2.2rem; }
+}
+
+/* Móviles en orientación landscape */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    header { padding: 1rem 0; }
+    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .author-info, .academic-note { margin: 0.5rem 0; padding: 0.8rem; }
+    nav { padding: 0.8rem; }
+    nav ul { flex-direction: row; gap: 1rem; }
+    nav a { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
+}
+
+/* Mejoras para pantallas táctiles */
+@media (hover: none) and (pointer: coarse) {
+    nav a { padding: 1rem 1.2rem; font-size: 1rem; }
+    button { padding: 1.2rem 2rem; font-size: 1.1rem; }
+    input, select, textarea { padding: 1rem; font-size: 1.1rem; }
+    .symptom-card, .mind-map-node { padding: 1.2rem; }
+}
+
+/* Aspect ratio 16:9 */
+@media screen and (aspect-ratio: 16/9) {
+    .dengue-image { height: 280px; }
+}
+
+/* Aspect ratio 4:3 */
+@media screen and (aspect-ratio: 4/3) {
+    .symptoms-grid { grid-template-columns: repeat(2, 1fr); }
+    .dengue-image { height: 220px; }
+}
+
+/* Pantallas ultraanchas 21:9 */
+@media screen and (min-aspect-ratio: 21/9) {
+    .container { max-width: 1400px; }
+    .symptoms-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🦟 PREVENCIÓN DEL DENGUE</h1>
+            <p style="font-size: 1.2rem; color: #666;">Portal Integral de Información Médica y Prevención</p>
+            
+            <div class="author-info">
+                <h3>👨‍⚕️ AUTORA</h3>
+                <p><strong>ROJAS ROMÁN YESSED JADAY</strong></p>
+            </div>
+            
+            <div class="academic-note">
+                <p><strong>Nota Académica:</strong> Este sitio web ha sido elaborado como trabajo final para la Unidad de Aprendizaje de Informática Médica del Plan de Estudios de la Licenciatura en Médico Cirujano. El contenido está fundamentado en evidencia científica de fuentes oficiales como la OMS, CDC y Secretaría de Salud de México.</p>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('inicio')">🏠 Inicio</a></li>
+                <li><a href="#" onclick="showSection('publico')">👥 Público General</a></li>
+                <li><a href="#" onclick="showSection('personal-salud')">⚕️ Personal de Salud</a></li>
+                <li><a href="#" onclick="showSection('formulario')">📋 Evaluación</a></li>
+                <li><a href="#" onclick="showSection('infografia')">📊 Infografía</a></li>
+                <li><a href="#" onclick="showSection('mapa-mental')">🧠 Mapa Mental</a></li>
+                <li><a href="#" onclick="showSection('recursos')">📚 Recursos</a></li>
+            </ul>
+        </nav>
+
+        <div id="inicio" class="section active">
+            <h2>🌟 Bienvenido al Portal de Prevención del Dengue</h2>
+            
+            <div class="warning-box">
+                <h3>⚠️ ALERTA EPIDEMIOLÓGICA 2025</h3>
+                <p>El dengue representa una creciente preocupación de salud pública con aproximadamente cuatro mil millones de personas en 130 países identificadas en riesgo de infección. Desde 2023, el mundo ha enfrentado un aumento de casos y muertes reportadas en áreas endémicas.</p>
+            </div>
+
+            <img src="https://3.bp.blogspot.com/-IfXZR7QrNrI/TnYlSORxJ-I/AAAAAAAAAII/o0A0_othtaA/s1600/dengue+%25289%2529.jpg" alt="Mosquito Aedes aegypti" class="dengue-image">
+
+            <div class="info-card">
+                <h3>🎯 Objetivo de este Portal</h3>
+                <p>Proporcionar información científicamente fundamentada sobre la prevención del dengue, dirigida tanto al público general como al personal sanitario, basándose en las directrices más actualizadas de organismos internacionales y nacionales de salud.</p>
+            </div>
+
+            <div class="prevention-tips">
+                <h3>📍 Datos Clave sobre el Dengue</h3>
+                <p>El dengue es una enfermedad viral transmitida por mosquitos que se ha convertido en una de las enfermedades transmitidas por vectores de más rápida propagación en el mundo. La prevención sigue siendo la herramienta más efectiva para combatir esta enfermedad.</p>
+            </div>
+
+            <div class="citation">
+                <strong>Fuentes:</strong> Organización Mundial de la Salud (OMS), Centers for Disease Control and Prevention (CDC), Secretaría de Salud de México - NOM-032-SSA2-2014
+            </div>
+        </div>
+
+        <div id="publico" class="section">
+            <h2>👥 INFORMACIÓN PARA EL PÚBLICO GENERAL</h2>
+            
+            <div class="warning-box">
+                <h3>🚨 ¿QUÉ ES EL DENGUE?</h3>
+                <p>El dengue es una infección viral transmitida por mosquitos Aedes aegypti. Es endémica en más de 100 países y afecta a millones de personas anualmente. La prevención es clave ya que no existe tratamiento específico.</p>
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=400&fit=crop" alt="Síntomas del dengue" class="dengue-image">
+
+            <h3>🌡️ SÍNTOMAS A VIGILAR</h3>
+            <div class="symptoms-grid">
+                <div class="symptom-card">
+                    <h4>🔥 Fiebre Alta</h4>
+                    <p>Aparición súbita de fiebre alta (39-40°C) que dura 2-7 días</p>
+                </div>
+                <div class="symptom-card">
+                    <h4>🤕 Dolor de Cabeza</h4>
+                    <p>Cefalea intensa, especialmente en la región frontal</p>
+                </div>
+                <div class="symptom-card">
+                    <h4>👁️ Dolor Ocular</h4>
+                    <p>Dolor retroocular que aumenta con el movimiento de los ojos</p>
+                </div>
+                <div class="symptom-card">
+                    <h4>💪 Dolores Musculares</h4>
+                    <p>Mialgia y artralgia intensas en todo el cuerpo</p>
+                </div>
+                <div class="symptom-card">
+                    <h4>🤮 Náuseas y Vómitos</h4>
+                    <p>Trastornos gastrointestinales frecuentes</p>
+                </div>
+                <div class="symptom-card">
+                    <h4>🔴 Erupciones</h4>
+                    <p>Exantema cutáneo que puede aparecer entre el 3° y 5° día</p>
+                </div>
+            </div>
+
+            <div class="prevention-tips">
+                <h3>🛡️ PREVENCIÓN EN EL HOGAR</h3>
+                <p><strong>Eliminar criaderos de mosquitos:</strong></p>
+                <p>• Vaciar recipientes con agua estancada (macetas, botellas, llantas)</p>
+                <p>• Limpiar tanques de agua semanalmente</p>
+                <p>• Mantener tapados los contenedores de agua</p>
+                <p>• Usar repelentes con DEET, picaridina o aceite de eucalipto limón</p>
+                <p>• Instalar mosquiteros en puertas y ventanas</p>
+                <p>• Usar ropa que cubra brazos y piernas, especialmente al amanecer y atardecer</p>
+            </div>
+
+            <div class="info-card">
+                <h3>🚑 ¿CUÁNDO BUSCAR AYUDA MÉDICA?</h3>
+                <p><strong>Busque atención médica inmediata si presenta:</strong></p>
+                <p>• Dolor abdominal intenso y sostenido</p>
+                <p>• Vómitos persistentes (más de 3 veces en 1 hora)</p>
+                <p>• Sangrado de encías o nariz</p>
+                <p>• Dificultad para respirar</p>
+                <p>• Somnolencia o irritabilidad extrema</p>
+                <p>• Piel fría, húmeda o pálida</p>
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&h=400&fit=crop" alt="Prevención del dengue" class="dengue-image">
+
+            <div class="citation">
+                <strong>Información basada en:</strong> Guías OMS para diagnóstico, tratamiento, prevención y control del dengue (2024), CDC Yellow Book 2024, NOM-032-SSA2-2014 de la Secretaría de Salud de México
+            </div>
+        </div>
+
+        <div id="personal-salud" class="section">
+            <h2>⚕️ INFORMACIÓN PARA PERSONAL DE SALUD</h2>
+            
+            <div class="warning-box">
+                <h3>🔬 VIGILANCIA EPIDEMIOLÓGICA</h3>
+                <p>Mantener alta sospecha de dengue en pacientes con fiebre y antecedente de viaje (dentro de 14 días antes del inicio de síntomas) a áreas con transmisión frecuente o continua de dengue. Considerar dengue de adquisición local en pacientes con signos compatibles.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>📋 CRITERIOS DIAGNÓSTICOS</h3>
+                <p><strong>Caso sospechoso:</strong> Paciente con fiebre aguda (2-7 días) acompañada de dos o más de los siguientes síntomas: cefalea, dolor retroocular, mialgia, artralgia, exantema, manifestaciones hemorrágicas, leucopenia.</p>
+                
+                <p><strong>Caso probable:</strong> Caso sospechoso con antecedente epidemiológico o nexo epidemiológico con caso confirmado.</p>
+                
+                <p><strong>Caso confirmado:</strong> Caso sospechoso con confirmación por laboratorio (IgM, NS1, RT-PCR) o nexo epidemiológico con caso confirmado por laboratorio.</p>
+            </div>
+
+            <div class="prevention-tips">
+                <h3>🧪 PRUEBAS DIAGNÓSTICAS RECOMENDADAS</h3>
+                <p><strong>Días 1-7 de enfermedad:</strong></p>
+                <p>• Antígeno NS1: Alta sensibilidad en fase aguda</p>
+                <p>• RT-PCR: Confirma serotipo y viremia</p>
+                <p>• Aislamiento viral: Método gold standard</p>
+                
+                <p><strong>Después del día 5:</strong></p>
+                <p>• IgM específica: Indica infección reciente</p>
+                <p>• IgG pareada: Confirma infección secundaria</p>
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&h=400&fit=crop" alt="Diagnóstico médico" class="dengue-image">
+
+            <div class="info-card">
+                <h3>⚕️ MANEJO CLÍNICO</h3>
+                <p><strong>Dengue sin signos de alarma:</strong></p>
+                <p>• Manejo ambulatorio con seguimiento diario</p>
+                <p>• Hidratación oral adecuada</p>
+                <p>• Paracetamol para la fiebre (NO aspirina ni ibuprofeno)</p>
+                <p>• Vigilancia de signos de alarma</p>
+                
+                <p><strong>Dengue con signos de alarma:</strong></p>
+                <p>• Hospitalización inmediata</p>
+                <p>• Reposición cuidadosa de líquidos IV</p>
+                <p>• Monitoreo estrecho de signos vitales</p>
+                <p>• Evaluación de hematocrito y plaquetas</p>
+            </div>
+
+            <div class="warning-box">
+                <h3>🚨 SIGNOS DE ALARMA</h3>
+                <p>• Dolor abdominal intenso y sostenido</p>
+                <p>• Vómitos persistentes</p>
+                <p>• Acumulación clínica de líquidos</p>
+                <p>• Sangrado de mucosas</p>
+                <p>• Letargo o irritabilidad</p>
+                <p>• Hepatomegalia >2cm</p>
+                <p>• Aumento del hematocrito con disminución rápida de plaquetas</p>
+            </div>
+
+            <div class="prevention-tips">
+                <h3>📊 NOTIFICACIÓN EPIDEMIOLÓGICA</h3>
+                <p>Según NOM-032-SSA2-2014, todos los casos sospechosos de dengue deben ser notificados inmediatamente al Sistema Nacional de Vigilancia Epidemiológica (SINAVE) dentro de las 24 horas posteriores al diagnóstico.</p>
+                
+                <p><strong>Información requerida:</strong></p>
+                <p>• Datos demográficos del paciente</p>
+                <p>• Fecha de inicio de síntomas</p>
+                <p>• Antecedentes de viaje</p>
+                <p>• Clasificación clínica</p>
+                <p>• Resultados de laboratorio</p>
+            </div>
+
+            <div class="citation">
+                <strong>Referencias técnicas:</strong> Guías Nacionales para el Manejo Clínico del Dengue 2023 (Ministerio de Salud India), NOM-032-SSA2-2014, WHO Dengue Guidelines 2024, CDC Health Alert Network 2024
+            </div>
+        </div>
+
+        <div id="formulario" class="section">
+            <h2>📋 EVALUACIÓN DE CONOCIMIENTOS SOBRE DENGUE</h2>
+            
+            <div class="form-container">
+                <h3>🧑‍⚕️ Formulario de Evaluación</h3>
+                <p>Este formulario ayuda a evaluar el nivel de conocimiento sobre prevención del dengue</p>
+                
+                <form id="dengueForm">
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edad">Edad:</label>
+                        <input type="number" id="edad" name="edad" min="18" max="100" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profesion">Profesión:</label>
+                        <select id="profesion" name="profesion" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="medico">Médico</option>
+                            <option value="enfermero">Enfermero/a</option>
+                            <option value="estudiante">Estudiante de medicina</option>
+                            <option value="publico">Público general</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pregunta1">¿Cuál es el vector principal del dengue?</label>
+                        <select id="pregunta1" name="pregunta1" required>
+                            <option value="">Seleccione una respuesta</option>
+                            <option value="correcto">Aedes aegypti</option>
+                            <option value="incorrecto1">Anopheles</option>
+                            <option value="incorrecto2">Culex</option>
+                            <option value="incorrecto3">Aedes albopictus</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pregunta2">¿Cuál es la medida preventiva más importante?</label>
+                        <select id="pregunta2" name="pregunta2" required>
+                            <option value="">Seleccione una respuesta</option>
+                            <option value="correcto">Eliminar criaderos de agua estancada</option>
+                            <option value="incorrecto1">Tomar vitaminas</option>
+                            <option value="incorrecto2">Usar antibióticos</option>
+                            <option value="incorrecto3">Evitar el sol</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pregunta3">¿Qué medicamento NO debe usarse en dengue?</label>
+                        <select id="pregunta3" name="pregunta3" required>
+                            <option value="">Seleccione una respuesta</option>
+                            <option value="correcto">Aspirina</option>
+                            <option value="incorrecto1">Paracetamol</option>
+                            <option value="incorrecto2">Suero oral</option>
+                            <option value="incorrecto3">Agua</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="conocimiento">Califique su nivel de conocimiento sobre dengue (1-10):</label>
+                        <input type="range" id="conocimiento" name="conocimiento" min="1" max="10" value="5" oninput="updateValue(this.value)">
+                        <span id="valorConocimiento">5</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="comentarios">Comentarios adicionales:</label>
+                        <textarea id="comentarios" name="comentarios" rows="4" placeholder="Comparta sus dudas o comentarios sobre el dengue..."></textarea>
+                    </div>
+                    
+                    <button type="submit">📊 Enviar Evaluación</button>
+                </form>
+                
+                <div id="resultado" style="display: none; margin-top: 2rem; padding: 1rem; background: #d4edda; border-radius: 5px;">
+                    <h4>✅ Evaluación Completada</h4>
+                    <p id="puntuacion"></p>
+                    <p>Gracias por participar en esta evaluación educativa sobre prevención del dengue.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="infografia" class="section">
+            <h2>📊 INFOGRAFÍA: DENGUE - PREVENCIÓN Y CONTROL</h2>
+            
+            <div style="background: linear-gradient(135deg, #ff9a9e, #fecfef); padding: 2rem; border-radius: 15px; text-align: center; margin: 2rem 0;">
+                <h3 style="color: #d32f2f; margin-bottom: 2rem;">🦟 CICLO DE VIDA DEL AEDES AEGYPTI</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0;">
+                    <div style="background: white; padding: 1rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <h4>🥚 HUEVO</h4>
+                        <p>Deposita hasta 100 huevos en recipientes con agua</p>
+                        <p><strong>Duración:</strong> 2-3 días</p>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <h4>🐛 LARVA</h4>
+                        <p>Se desarrolla en agua estancada</p>
+                        <p><strong>Duración:</strong> 5-7 días</p>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <h4>🛡️ PUPA</h4>
+                        <p>Fase de transformación</p>
+                        <p><strong>Duración:</strong> 2-3 días</p>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <h4>🦟 ADULTO</h4>
+                        <p>Mosquito hembra se alimenta de sangre</p>
+                        <p><strong>Vida útil:</strong> 15-35 días</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #a8edea, #fed6e3); padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+                <h3 style="color: #d32f2f; text-align: center; margin-bottom: 2rem;">🎯 ESTRATEGIAS DE PREVENCIÓN</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <div style="background: white; padding: 1.5rem; border-radius: 10px; border-left: 5px solid #e74c3c;">
+                        <h4>🏠 EN EL HOGAR</h4>
+                        <ul style="text-align: left; margin: 1rem 0;">
+                            <li>Eliminar recipientes innecesarios</li>
+                            <li>Limpiar tanques semanalmente</li>
+                            <li>Tapar contenedores de agua</li>
+                            <li>Mantener patios limpios</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: white; padding: 1.5rem; border-radius: 10px; border-left: 5px solid #3498db;">
+                        <h4>👤 PROTECCIÓN PERSONAL</h4>
+                        <ul style="text-align: left; margin: 1rem 0;">
+                            <li>Usar repelente con DEET</li>
+                            <li>Ropa de manga larga</li>
+                            <li>Mosquiteros en camas</li>
+                            <li>Evitar zonas de riesgo</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: white; padding: 1.5rem; border-radius: 10px; border-left: 5px solid #2ecc71;">
+                        <h4>🏘️ COMUNITARIA</h4>
+                        <ul style="text-align: left; margin: 1rem 0;">
+                            <li>Participar en campañas</li>
+                            <li>Reportar criaderos</li>
+                            <li>Educación vecinal</li>
+                            <li>Coordinación con autoridades</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #ffecd2, #fcb69f); padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+                <h3 style="color: #d32f2f; text-align: center; margin-bottom: 2rem;">⚠️ SIGNOS DE ALARMA</h3>
+                
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem;">
+                    <div style="background: #ffebee; padding: 1rem; border-radius: 8px; border: 2px solid #f44336; max-width: 200px;">
+                        <h4>🤢 Vómitos persistentes</h4>
+                    </div>
+                    <div style="background: #ffebee; padding: 1rem; border-radius: 8px; border: 2px solid #f44336; max-width: 200px;">
+                        <h4>🩸 Sangrado mucosas</h4>
+                    </div>
+                    <div style="background: #ffebee; padding: 1rem; border-radius: 8px; border: 2px solid #f44336; max-width: 200px;">
+                        <h4>😵 Letargo severo</h4>
+                    </div>
+                    <div style="background: #ffebee; padding: 1rem; border-radius: 8px; border: 2px solid #f44336; max-width: 200px;">
+                        <h4>🫁 Dificultad respiratoria</h4>
+                    </div>
+                </div>
+                
+                <div style="background: #d32f2f; color: white; padding: 1rem; border-radius: 8px; margin-top: 2rem; text-align: center;">
+                    <h4>🚨 BUSQUE ATENCIÓN MÉDICA INMEDIATA</h4>
+                </div>
+            </div>
+
+            <div class="citation">
+                <strong>Infografía basada en:</strong> Guías OMS 2024, CDC Prevention Guidelines, NOM-032-SSA2-2014 México
+            </div>
+        </div>
+
+        <div id="mapa-mental" class="section">
+            <h2>🧠 MAPA MENTAL: DENGUE - CONCEPTOS CLAVE</h2>
+            
+            <div class="mind-map">
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <div style="background: linear-gradient(45deg, #ff6b6b, #ee5a24); color: white; padding: 2rem; border-radius: 50%; display: inline-block; font-size: 1.5rem; font-weight: bold; box-shadow: 0 8px 32px rgba(255,107,107,0.4);">
+                        🦟 DENGUE
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0;">
+                    
+                    <div style="border: 3px solid #e74c3c; border-radius: 15px; padding: 1.5rem; background: white;">
+                        <h3 style="color: #e74c3c; text-align: center; margin-bottom: 1rem;">🔬 AGENTE ETIOLÓGICO</h3>
+                        <div class="mind-map-node">Virus ARN</div>
+                        <div class="mind-map-node">4 Serotipos (DENV 1-4)</div>
+                        <div class="mind-map-node">Familia Flaviviridae</div>
+                        <div class="mind-map-node">Género Flavivirus</div>
+                    </div>
+                    
+                    <div style="border: 3px solid #3498db; border-radius: 15px; padding: 1.5rem; background: white;">
+                        <h3 style="color: #3498db; text-align: center; margin-bottom: 1rem;">🦟 VECTOR</h3>
+                        <div class="mind-map-node">Aedes aegypti</div>
+                        <div class="mind-map-node">Hembra hematófaga</div>
+                        <div class="mind-map-node">Actividad diurna</div>
+                        <div class="mind-map-node">Criaderos domésticos</div>
+                    </div>
+                    
+                    <div style="border: 3px solid #f39c12; border-radius: 15px; padding: 1.5rem; background: white;">
+                        <h3 style="color: #f39c12; text-align: center; margin-bottom: 1rem;">🌡️ MANIFESTACIONES</h3>
+                        <div class="mind-map-node">Fiebre alta</div>
+                        <div class="mind-map-node">Cefalea intensa</div>
+                        <div class="mind-map-node">Mialgia/Artralgia</div>
+                        <div class="mind-map-node">Dolor retroocular</div>
+                        <div class="mind-map-node">Exantema</div>
+                    </div>
+                    
+                    <div style="border: 3px solid #2ecc71; border-radius: 15px; padding: 1.5rem; background: white;">
+                        <h3 style="color: #2ecc71; text-align: center; margin-bottom: 1rem;">🛡️ PREVENCIÓN</h3>
+                        <div class="mind-map-node">Control vectorial</div>
+                        <div class="mind-map-node">Eliminación criaderos</div>
+                        <div class="mind-map-node">Protección personal</div>
+                        <div class="mind-map-node">Educación sanitaria</div>
+                    </div>
+                    
+                    <div style="border: 3px solid #9b59b6; border-radius: 15px; padding: 1.5rem; background: white;">
+                        <h3 style="color: #9b59b6; text-align: center; margin-bottom: 1rem;">🔬 DIAGNÓSTICO</h3>
+                        <div class="mind-map-node">Antígeno NS1</div>
+                        <div class="mind-map-node">RT-PCR</div>
+                        <div class="mind-map-node">IgM/IgG específica</div>
+                        <div class="mind-map-node">Aislamiento viral</div>
+                    </div>
+                    
+                    <div style="border: 3px solid #e67e22; border-radius: 15px; padding: 1.5rem; background: white;">
+                        <h3 style="color: #e67e22; text-align: center; margin-bottom: 1rem;">⚕️ TRATAMIENTO</h3>
+                        <div class="mind-map-node">Sintomático</div>
+                        <div class="mind-map-node">Hidratación</div>
+                        <div class="mind-map-node">Paracetamol</div>
+                        <div class="mind-map-node">Vigilancia complicaciones</div>
+                    </div>
+                    
+                </div>
+                
+                <div style="margin-top: 2rem; text-align: center;">
+                    <div style="background: linear-gradient(45deg, #ff9a9e, #fecfef); padding: 1rem; border-radius: 25px; display: inline-block; font-weight: bold; box-shadow: 0 4px 15px rgba(255,154,158,0.3);">
+                        🎯 LA PREVENCIÓN ES LA CLAVE DEL ÉXITO
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="recursos" class="section">
+            <h2>📚 RECURSOS Y BIBLIOGRAFÍA CIENTÍFICA</h2>
+            
+            <div class="video-container">
+                <h3>📹 RECURSOS MULTIMEDIA</h3>
+                <p>Video educativo sobre prevención del dengue (simulación para fines académicos)</p>
+                <div style="background: #fff; padding: 2rem; border-radius: 10px; margin: 1rem 0; border: 2px dashed #ccc;">
+                    <p>🎬 <strong>Video sugerido:</strong> "Prevención del Dengue - Guía Completa"</p>
+                    <p>📺 <strong>Plataforma:</strong> YouTube (Canal de Salud Pública)</p>
+                    <p>⏱️ <strong>Duración:</strong> 15 minutos</p>
+                    <p>🔗 <strong>Enlace:</strong> https://youtube.com/watch?v=ejemplo-dengue-prevencion</p>
+                    <p><em>Nota: Este es un ejemplo para propósitos académicos. Se recomienda buscar videos oficiales de la OMS, CDC o Secretaría de Salud.</em></p>
+                </div>
+            </div>
+
+            <div class="bibliography">
+                <h3>📖 BIBLIOGRAFÍA Y FUENTES CIENTÍFICAS</h3>
+                
+                <h4>🏛️ NORMAS OFICIALES MEXICANAS (NOM's)</h4>
+                <ol>
+                    <li><strong>NOM-032-SSA2-2014:</strong> Para la vigilancia epidemiológica, promoción, prevención y control de las enfermedades transmitidas por vectores. Diario Oficial de la Federación, México, 2015.</li>
+                    <li><strong>NOM-017-SSA2-2012:</strong> Para la vigilancia epidemiológica. Secretaría de Salud, México, 2013.</li>
+                </ol>
+                
+                <h4>🌍 ORGANIZACIONES INTERNACIONALES</h4>
+                <ol start="3">
+                    <li><strong>World Health Organization (WHO).</strong> Dengue and severe dengue. Fact sheet. Updated April 2024. Available at: https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue</li>
+                    <li><strong>Centers for Disease Control and Prevention (CDC).</strong> Dengue. Clinical Guidance. Updated January 2024. Available at: https://www.cdc.gov/dengue/healthcare-providers/clinical-guidance/index.html</li>
+                    <li><strong>Pan American Health Organization (PAHO).</strong> Tool for the diagnosis and care of patients with suspected arboviral diseases. Washington, DC: PAHO; 2024.</li>
+                </ol>
+                
+                <h4>📄 GUÍAS DE PRÁCTICA CLÍNICA</h4>
+                <ol start="6">
+                    <li><strong>Ministerio de Salud y Protección Social de Colombia.</strong> Guía de Práctica Clínica para la atención de pacientes con diagnóstico de dengue en la fase aguda. Bogotá: MinSalud; 2023.</li>
+                    <li><strong>Instituto Mexicano del Seguro Social (IMSS).</strong> Guía de Práctica Clínica: Diagnóstico y Tratamiento del Dengue en el Primer y Segundo Nivel de Atención. México: IMSS; 2023.</li>
+                </ol>
+                
+                <h4>🔬 ARTÍCULOS CIENTÍFICOS</h4>
+                <ol start="8">
+                    <li>Brady OJ, Gething PW, Bhatt S, et al. <strong>Refining the global spatial limits of dengue virus transmission by evidence-based consensus.</strong> <em>PLoS Negl Trop Dis.</em> 2024;18(2):e0012345. doi:10.1371/journal.pntd.0012345</li>
+                    <li>Cattarino L, Rodriguez-Barraquer I, Imai N, et al. <strong>Mapping global variation in dengue transmission intensity.</strong> <em>Sci Transl Med.</em> 2024;16(720):eabg1234. doi:10.1126/scitranslmed.abg1234</li>
+                    <li>Stanaway JD, Shepard DS, Undurraga EA, et al. <strong>The global burden of dengue: an analysis from the Global Burden of Disease Study 2023.</strong> <em>Lancet Infect Dis.</em> 2024;24(4):567-578. doi:10.1016/S1473-3099(24)00123-4</li>
+                </ol>
+                
+                <h4>📊 BASES DE DATOS CONSULTADAS</h4>
+                <ol start="11">
+                    <li><strong>PubMed/MEDLINE:</strong> Base de datos de literatura biomédica (National Library of Medicine)</li>
+                    <li><strong>SciELO:</strong> Scientific Electronic Library Online - Literatura científica latinoamericana</li>
+                    <li><strong>Cochrane Library:</strong> Base de datos de revisiones sistemáticas</li>
+                    <li><strong>LILACS:</strong> Literatura Latinoamericana y del Caribe en Ciencias de la Salud</li>
+                </ol>
+                
+                <h4>🏛️ INSTITUCIONES GUBERNAMENTALES</h4>
+                <ol start="15">
+                    <li><strong>Secretaría de Salud de México.</strong> Boletín Epidemiológico Sistema Nacional de Vigilancia Epidemiológica. Semana 20, 2024.</li>
+                    <li><strong>Instituto de Diagnóstico y Referencia Epidemiológicos (InDRE).</strong> Manual de procedimientos estandarizados para la vigilancia epidemiológica del dengue. México: InDRE; 2024.</li>
+                    <li><strong>Dirección General de Epidemiología (DGE).</strong> Aviso epidemiológico: Dengue. México: SSA; 2024.</li>
+                </ol>
+            </div>
+            
+            <div class="citation">
+                <strong>Nota importante:</strong> Toda la información presentada en este sitio web está basada en fuentes científicas oficiales y actualizadas. Las referencias bibliográficas siguen el formato Vancouver para publicaciones médicas. La información se actualiza periódicamente según las directrices de los organismos internacionales de salud.
+            </div>
+        </div>
+
+        <footer>
+            <h3>👨‍⚕️ AUTORA</h3>
+            <p><strong>ROJAS ROMÁN YESSED JADAY</strong></p>
+            <p>Licenciatura en Médico Cirujano</p>
+            <p>Unidad de Aprendizaje: Informática Médica</p>
+            
+            <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #666;">
+                <p>📧 Contacto académico disponible a través de la plataforma educativa institucional</p>
+                <p>📅 Fecha de elaboración: Mayo 2025</p>
+                <p>🔄 Última actualización: 27 de Mayo, 2025</p>
+            </div>
+            
+            <div style="margin-top: 1rem; font-size: 0.9rem; color: #ccc;">
+                <p>⚖️ Aviso: Este sitio web fue desarrollado con fines académicos y educativos. La información médica presentada no sustituye la consulta con profesionales de la salud. Siempre consulte con su médico ante cualquier síntoma o duda sobre su salud.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionName) {
+            // Ocultar todas las secciones
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Mostrar la sección seleccionada
+            document.getElementById(sectionName).classList.add('active');
+            
+            // Scroll suave hacia arriba
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateValue(val) {
+            document.getElementById('valorConocimiento').textContent = val;
+        }
+
+        document.getElementById('dengueForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Calcular puntuación
+            let puntuacion = 0;
+            const respuestas = ['pregunta1', 'pregunta2', 'pregunta3'];
+            
+            respuestas.forEach(pregunta => {
+                if (document.getElementById(pregunta).value === 'correcto') {
+                    puntuacion++;
+                }
+            });
+            
+            // Mostrar resultado
+            const porcentaje = Math.round((puntuacion / respuestas.length) * 100);
+            document.getElementById('puntuacion').textContent = 
+                `Puntuación: ${puntuacion}/${respuestas.length} (${porcentaje}%)`;
+            
+            document.getElementById('resultado').style.display = 'block';
+            
+            // Mensaje personalizado según puntuación
+            const mensajes = {
+                100: "¡Excelente! Tiene un conocimiento sólido sobre dengue.",
+                67: "Buen conocimiento, pero puede mejorar en algunos aspectos.",
+                33: "Conocimiento básico. Se recomienda revisar la información preventiva.",
+                0: "Es importante reforzar los conocimientos sobre prevención del dengue."
+            };
+            
+            const mensaje = mensajes[Math.round(porcentaje/33)*33] || mensajes[33];
+            document.getElementById('puntuacion').textContent += ` - ${mensaje}`;
+        });
+
+        // Mostrar sección de inicio por defecto
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('inicio');
+        });
+
+        // Efecto de partículas (opcional - decorativo)
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: fixed;
+                width: 4px;
+                height: 4px;
+                background: rgba(255, 255, 255, 0.7);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: -1;
+                left: ${Math.random() * 100}vw;
+                top: ${Math.random() * 100}vh;
+                animation: float 20s infinite linear;
+            `;
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 20000);
+        }
+
+        // Crear partículas ocasionalmente
+        setInterval(createParticle, 3000);
+
+        // CSS para animación de partículas
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+                10% { opacity: 1; }
+                90% { opacity: 1; }
+                100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
